@@ -1,5 +1,6 @@
 package com.postech.entregavel1techchallenge.adapters.in.controller;
 
+import com.postech.entregavel1techchallenge.adapters.in.controller.documentations.ICustomerController;
 import com.postech.entregavel1techchallenge.adapters.in.controller.mapper.CustomerRequestResponseMapper;
 import com.postech.entregavel1techchallenge.adapters.in.controller.request.CustomerRequest;
 import com.postech.entregavel1techchallenge.adapters.in.controller.response.CustomerResponse;
@@ -18,7 +19,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RestController
 @RequestMapping("/customers")
 @RequiredArgsConstructor
-public class CustomerController {
+public class CustomerController implements ICustomerController {
 
     private final CreateCustomerInputPort createCustomerInputPort;
 

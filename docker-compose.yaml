@@ -3,7 +3,7 @@ services:
     build:
       context: .
     hostname: app
-    image: robsonbnh/xxxx
+    image: robsonbnh/tech-challenge:latest
     environment:
       - SERVER_PORT=8080
       - DATABASE_URL=jdbc:postgresql://db-postgresql:5432/pos_tech_db
@@ -21,7 +21,7 @@ services:
     image: postgres:latest
     hostname: db-postgresql
     environment:
-      - POSTGRES_DB=post_tech_db
+      - POSTGRES_DB=pos_tech_db
       - POSTGRES_PASSWORD=root
       - POSTGRES_USER=root
     ports:
@@ -34,3 +34,6 @@ services:
       start_period: 10s
     networks:
       - pos-tech
+
+networks:
+  pos-tech:
