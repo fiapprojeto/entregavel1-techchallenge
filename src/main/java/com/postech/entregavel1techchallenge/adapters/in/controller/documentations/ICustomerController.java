@@ -2,7 +2,7 @@ package com.postech.entregavel1techchallenge.adapters.in.controller.documentatio
 
 import com.postech.entregavel1techchallenge.adapters.in.controller.request.CustomerRequest;
 import com.postech.entregavel1techchallenge.adapters.in.controller.response.CustomerResponse;
-import com.postech.entregavel1techchallenge.application.core.exceptions.AlreadyExistsCustomerException;
+import com.postech.entregavel1techchallenge.application.core.exceptions.ExceptionDetails;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -31,7 +31,7 @@ public interface ICustomerController {
                     responseCode = "422",
                     description = "Quando o email ou documento do cliente já está em uso",
                     content = {
-                            @Content(mediaType = "application/json", schema = @Schema(implementation = AlreadyExistsCustomerException.class))
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = ExceptionDetails.class))
                     }
             )
     })
@@ -51,7 +51,7 @@ public interface ICustomerController {
                     responseCode = "404",
                     description = "Quando o cliente não foi encontrado pelo documento",
                     content = {
-                            @Content(mediaType = "application/json", schema = @Schema(implementation = AlreadyExistsCustomerException.class))
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = ExceptionDetails.class))
                     }
             )
     })
