@@ -7,6 +7,7 @@ import com.postech.entregavel1techchallenge.adapters.in.controller.response.Cust
 import com.postech.entregavel1techchallenge.adapters.out.FindCustomerByDocumentAdapter;
 import com.postech.entregavel1techchallenge.application.ports.in.CreateCustomerInputPort;
 import com.postech.entregavel1techchallenge.application.ports.in.FindCustomerByDocumentInputPort;
+import com.postech.entregavel1techchallenge.application.ports.in.FindCustomerByIdInputPort;
 import com.postech.entregavel1techchallenge.application.ports.out.GetCustomerByDocumentOutputPort;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +26,8 @@ public class CustomerController implements ICustomerController {
 
     private final FindCustomerByDocumentInputPort findCustomerByDocumentInputPort;
 
+    private final FindCustomerByIdInputPort findCustomerByIdInputPort;
+
     private final CustomerRequestResponseMapper mapper;
 
     @PostMapping
@@ -38,6 +41,15 @@ public class CustomerController implements ICustomerController {
 
         log.info("Cliente cadastrado com sucesso. [response: {}]", response);
         return ResponseEntity.created(uri).body(response);
+    }
+
+    @GetMapping("{customerId}")
+    public ResponseEntity<CustomerResponse> findById(@PathVariable String customerId) {
+        log.info("Buscando cliente por id: {}", customerId);
+        var customer = findCustomerByIdInputPort.find(customerId);
+        var response = mapper.toCustomerResponse(customer);
+        log.info("Cliente encontrado. [id: {} e response: {}", customerId, response);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/{document}/document")

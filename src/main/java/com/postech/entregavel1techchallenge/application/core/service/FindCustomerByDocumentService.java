@@ -16,6 +16,6 @@ public class FindCustomerByDocumentService implements FindCustomerByDocumentInpu
     @Override
     public Customer find(String document) {
         return getCustomerByDocumentOutputPort.get(document)
-                .orElseThrow(() -> new CustomerNotFoundException("Cliente não encontrado."));
+                .orElseThrow(() -> new CustomerNotFoundException("Cliente não encontrado para o documento informado."));
     }
 }
