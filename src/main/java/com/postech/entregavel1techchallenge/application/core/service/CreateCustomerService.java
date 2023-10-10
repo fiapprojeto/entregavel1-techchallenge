@@ -1,7 +1,5 @@
 package com.postech.entregavel1techchallenge.application.core.service;
 
-import com.postech.entregavel1techchallenge.adapters.out.ExistsCustomerByEmailAdapter;
-import com.postech.entregavel1techchallenge.adapters.out.SaveCustomerAdapter;
 import com.postech.entregavel1techchallenge.application.core.domain.Customer;
 import com.postech.entregavel1techchallenge.application.core.exceptions.AlreadyExistsCustomerException;
 import com.postech.entregavel1techchallenge.application.ports.in.CreateCustomerInputPort;
