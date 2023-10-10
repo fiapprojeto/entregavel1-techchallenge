@@ -16,6 +16,6 @@ public class FindCustomerByIdService implements FindCustomerByIdInputPort {
     @Override
     public Customer find(String id) {
         return getCustomerByIdOutputPort.get(id)
-                .orElseThrow(() ->  new CustomerNotFoundException("Cliente não encontrado para o id informado."));
+                .orElseThrow(() -> new CustomerNotFoundException("Cliente não encontrado para o id informado."));
     }
 }

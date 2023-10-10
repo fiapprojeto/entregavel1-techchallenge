@@ -6,6 +6,7 @@ import com.postech.entregavel1techchallenge.application.core.domain.Customer;
 import com.postech.entregavel1techchallenge.application.ports.out.GetCustomerByIdOutputPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -18,6 +19,7 @@ public class FindCustomerByIdAdapter implements GetCustomerByIdOutputPort {
     private final CustomerEntityMapper entityMapper;
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<Customer> get(String id) {
         return customerRepository.findById(id)
                 .map(entityMapper::toCustomer);
