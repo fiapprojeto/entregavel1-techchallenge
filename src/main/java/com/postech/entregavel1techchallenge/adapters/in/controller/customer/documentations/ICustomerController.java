@@ -38,6 +38,25 @@ public interface ICustomerController {
     ResponseEntity<CustomerResponse> create(@RequestBody @Valid CustomerRequest request,
                                                    UriComponentsBuilder uriBuilder);
 
+    @Operation(summary = "Busca cliente", description = "Endpoint responsável por buscar cliente por id")
+    @ApiResponses( value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Cliente encontrado com sucesso",
+                    content = {
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = CustomerResponse.class))
+                    }
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Quando o cliente não foi encontrado pelo id",
+                    content = {
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = ExceptionDetails.class))
+                    }
+            )
+    })
+    ResponseEntity<CustomerResponse> findById(@PathVariable String customerId);
+
     @Operation(summary = "Busca cliente", description = "Endpoint responsável por buscar cliente por documento")
     @ApiResponses( value = {
             @ApiResponse(

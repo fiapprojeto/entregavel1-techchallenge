@@ -1,6 +1,5 @@
 package com.postech.entregavel1techchallenge.adapters.out.customer;
 
-import com.postech.entregavel1techchallenge.adapters.out.customer.SaveCustomerAdapter;
 import com.postech.entregavel1techchallenge.adapters.out.repository.CustomerRepository;
 import com.postech.entregavel1techchallenge.adapters.out.repository.entity.CustomerEntity;
 import com.postech.entregavel1techchallenge.adapters.out.repository.mapper.CustomerEntityMapper;

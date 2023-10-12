@@ -1,8 +1,10 @@
 package com.postech.entregavel1techchallenge.adapters.in.controller.handler;
 
+import com.postech.entregavel1techchallenge.application.core.exceptions.BaseException;
+import com.postech.entregavel1techchallenge.application.core.exceptions.ExceptionDetails;
 import com.postech.entregavel1techchallenge.application.core.exceptions.customer.AlreadyExistsCustomerException;
 import com.postech.entregavel1techchallenge.application.core.exceptions.customer.CustomerNotFoundException;
-import com.postech.entregavel1techchallenge.application.core.exceptions.ExceptionDetails;
+import com.postech.entregavel1techchallenge.application.core.exceptions.product.ProductNotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -17,23 +19,28 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(AlreadyExistsCustomerException.class)
     public ResponseEntity<ExceptionDetails> handlerAlreadyExistsCustomerException(AlreadyExistsCustomerException ex) {
-        var exceptionDetails = ExceptionDetails.builder()
-                .status(HttpStatus.UNPROCESSABLE_ENTITY.value())
-                .title(ex.getTitle())
-                .message(ex.getMessage())
-                .build();
-        return new ResponseEntity<>(exceptionDetails, HttpStatus.UNPROCESSABLE_ENTITY);
+        return buildException(ex, HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
     @ExceptionHandler(CustomerNotFoundException.class)
     public ResponseEntity<ExceptionDetails> handlerCustomerNotFoundException(CustomerNotFoundException ex) {
+        return buildException(ex, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(ProductNotFoundException.class)
+    public ResponseEntity<ExceptionDetails> handlerProductNotFoundException(ProductNotFoundException ex) {
+        return buildException(ex, HttpStatus.NOT_FOUND);
+    }
+
+    private ResponseEntity<ExceptionDetails> buildException(BaseException ex, HttpStatus httpStatus) {
         var exceptionDetails = ExceptionDetails.builder()
-                .status(HttpStatus.NOT_FOUND.value())
+                .status(httpStatus.value())
                 .title(ex.getTitle())
                 .message(ex.getMessage())
                 .build();
-        return new ResponseEntity<>(exceptionDetails, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(exceptionDetails, httpStatus);
     }
+
 
     @Override
     protected ResponseEntity<Object> handleExceptionInternal(Exception ex,

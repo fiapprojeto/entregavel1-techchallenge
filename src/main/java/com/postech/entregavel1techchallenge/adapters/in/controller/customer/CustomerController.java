@@ -58,6 +58,4 @@ public class CustomerController implements ICustomerController {
         log.info("Cliente encontrado. [document: {} e response: {}", document, response);
         return ResponseEntity.ok(response);
     }
-
-
 }
