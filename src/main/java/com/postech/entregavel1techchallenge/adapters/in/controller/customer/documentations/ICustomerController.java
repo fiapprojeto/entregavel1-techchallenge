@@ -1,7 +1,7 @@
-package com.postech.entregavel1techchallenge.adapters.in.controller.documentations;
+package com.postech.entregavel1techchallenge.adapters.in.controller.customer.documentations;
 
-import com.postech.entregavel1techchallenge.adapters.in.controller.request.CustomerRequest;
-import com.postech.entregavel1techchallenge.adapters.in.controller.response.CustomerResponse;
+import com.postech.entregavel1techchallenge.adapters.in.controller.customer.request.CustomerRequest;
+import com.postech.entregavel1techchallenge.adapters.in.controller.customer.response.CustomerResponse;
 import com.postech.entregavel1techchallenge.application.core.exceptions.ExceptionDetails;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;

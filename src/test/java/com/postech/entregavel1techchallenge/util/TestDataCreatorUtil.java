@@ -1,7 +1,7 @@
 package com.postech.entregavel1techchallenge.util;
 
-import com.postech.entregavel1techchallenge.adapters.in.controller.request.CustomerRequest;
-import com.postech.entregavel1techchallenge.adapters.in.controller.response.CustomerResponse;
+import com.postech.entregavel1techchallenge.adapters.in.controller.customer.request.CustomerRequest;
+import com.postech.entregavel1techchallenge.adapters.in.controller.customer.response.CustomerResponse;
 import com.postech.entregavel1techchallenge.adapters.out.repository.entity.CustomerEntity;
 import com.postech.entregavel1techchallenge.application.core.domain.Customer;
 

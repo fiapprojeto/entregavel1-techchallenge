@@ -1,4 +1,4 @@
-package com.postech.entregavel1techchallenge.adapters.in.controller.response;
+package com.postech.entregavel1techchallenge.adapters.in.controller.customer.response;
 
 import lombok.Builder;
 import lombok.Data;

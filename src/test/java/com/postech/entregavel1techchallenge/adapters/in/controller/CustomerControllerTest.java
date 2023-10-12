@@ -1,8 +1,9 @@
 package com.postech.entregavel1techchallenge.adapters.in.controller;
 
-import com.postech.entregavel1techchallenge.adapters.in.controller.mapper.CustomerRequestResponseMapper;
-import com.postech.entregavel1techchallenge.adapters.in.controller.request.CustomerRequest;
-import com.postech.entregavel1techchallenge.adapters.in.controller.response.CustomerResponse;
+import com.postech.entregavel1techchallenge.adapters.in.controller.customer.CustomerController;
+import com.postech.entregavel1techchallenge.adapters.in.controller.customer.mapper.CustomerRequestResponseMapper;
+import com.postech.entregavel1techchallenge.adapters.in.controller.customer.request.CustomerRequest;
+import com.postech.entregavel1techchallenge.adapters.in.controller.customer.response.CustomerResponse;
 import com.postech.entregavel1techchallenge.application.core.domain.Customer;
 import com.postech.entregavel1techchallenge.application.ports.in.customer.CreateCustomerInputPort;
 import com.postech.entregavel1techchallenge.application.ports.in.customer.FindCustomerByDocumentInputPort;

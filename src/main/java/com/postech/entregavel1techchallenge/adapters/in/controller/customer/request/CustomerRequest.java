@@ -1,4 +1,4 @@
-package com.postech.entregavel1techchallenge.adapters.in.controller.request;
+package com.postech.entregavel1techchallenge.adapters.in.controller.customer.request;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
