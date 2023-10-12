@@ -13,13 +13,12 @@ Projeto responsável pela geração de pedidos
     - [**Spring Boot 3**](https://spring.io/projects/spring-boot)
     - [**Docker**](https://docs.docker.com/docker-for-mac/install/#download-docker-for-mac)
 
+### Building
 
-    ### Installing dependencies
-
-Execute o comando abaixo na raíz do projeto para instalar as dependências:
+Execute o comando abaixo na raíz do projeto para buildar:
 
 ````
-./gradlew clean install
+./gradlew clean build
 ````
 
 ### Running the tests

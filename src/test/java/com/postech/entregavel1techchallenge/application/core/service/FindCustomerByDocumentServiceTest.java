@@ -1,8 +1,9 @@
 package com.postech.entregavel1techchallenge.application.core.service;
 
 import com.postech.entregavel1techchallenge.application.core.domain.Customer;
-import com.postech.entregavel1techchallenge.application.core.exceptions.CustomerNotFoundException;
-import com.postech.entregavel1techchallenge.application.ports.out.GetCustomerByDocumentOutputPort;
+import com.postech.entregavel1techchallenge.application.core.exceptions.customer.CustomerNotFoundException;
+import com.postech.entregavel1techchallenge.application.core.service.customer.FindCustomerByDocumentService;
+import com.postech.entregavel1techchallenge.application.ports.out.customer.GetCustomerByDocumentOutputPort;
 import com.postech.entregavel1techchallenge.util.TestDataCreatorUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

@@ -1,5 +1,6 @@
-package com.postech.entregavel1techchallenge.adapters.out;
+package com.postech.entregavel1techchallenge.adapters.out.customer;
 
+import com.postech.entregavel1techchallenge.adapters.out.customer.ExistsCustomerByDocumentAdapter;
 import com.postech.entregavel1techchallenge.adapters.out.repository.CustomerRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

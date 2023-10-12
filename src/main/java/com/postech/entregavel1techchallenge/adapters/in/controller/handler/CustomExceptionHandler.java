@@ -1,7 +1,7 @@
 package com.postech.entregavel1techchallenge.adapters.in.controller.handler;
 
-import com.postech.entregavel1techchallenge.application.core.exceptions.AlreadyExistsCustomerException;
-import com.postech.entregavel1techchallenge.application.core.exceptions.CustomerNotFoundException;
+import com.postech.entregavel1techchallenge.application.core.exceptions.customer.AlreadyExistsCustomerException;
+import com.postech.entregavel1techchallenge.application.core.exceptions.customer.CustomerNotFoundException;
 import com.postech.entregavel1techchallenge.application.core.exceptions.ExceptionDetails;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

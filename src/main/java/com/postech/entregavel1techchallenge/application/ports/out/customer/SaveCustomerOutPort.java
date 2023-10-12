@@ -1,7 +1,7 @@
-package com.postech.entregavel1techchallenge.application.ports.in;
+package com.postech.entregavel1techchallenge.application.ports.out.customer;
 
 import com.postech.entregavel1techchallenge.application.core.domain.Customer;
 
-public interface CreateCustomerInputPort {
+public interface SaveCustomerOutPort {
     Customer save(Customer customer);
 }

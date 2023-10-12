@@ -4,9 +4,9 @@ import com.postech.entregavel1techchallenge.adapters.in.controller.documentation
 import com.postech.entregavel1techchallenge.adapters.in.controller.mapper.CustomerRequestResponseMapper;
 import com.postech.entregavel1techchallenge.adapters.in.controller.request.CustomerRequest;
 import com.postech.entregavel1techchallenge.adapters.in.controller.response.CustomerResponse;
-import com.postech.entregavel1techchallenge.application.ports.in.CreateCustomerInputPort;
-import com.postech.entregavel1techchallenge.application.ports.in.FindCustomerByDocumentInputPort;
-import com.postech.entregavel1techchallenge.application.ports.in.FindCustomerByIdInputPort;
+import com.postech.entregavel1techchallenge.application.ports.in.customer.CreateCustomerInputPort;
+import com.postech.entregavel1techchallenge.application.ports.in.customer.FindCustomerByDocumentInputPort;
+import com.postech.entregavel1techchallenge.application.ports.in.customer.FindCustomerByIdInputPort;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

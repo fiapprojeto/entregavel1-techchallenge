@@ -1,11 +1,11 @@
-package com.postech.entregavel1techchallenge.application.core.service;
+package com.postech.entregavel1techchallenge.application.core.service.customer;
 
 import com.postech.entregavel1techchallenge.application.core.domain.Customer;
-import com.postech.entregavel1techchallenge.application.core.exceptions.AlreadyExistsCustomerException;
-import com.postech.entregavel1techchallenge.application.ports.in.CreateCustomerInputPort;
-import com.postech.entregavel1techchallenge.application.ports.out.ExistsCustomerByDocumentOutputPort;
-import com.postech.entregavel1techchallenge.application.ports.out.ExistsCustomerByEmailOutputPort;
-import com.postech.entregavel1techchallenge.application.ports.out.SaveCustomerOutPort;
+import com.postech.entregavel1techchallenge.application.core.exceptions.customer.AlreadyExistsCustomerException;
+import com.postech.entregavel1techchallenge.application.ports.in.customer.CreateCustomerInputPort;
+import com.postech.entregavel1techchallenge.application.ports.out.customer.ExistsCustomerByDocumentOutputPort;
+import com.postech.entregavel1techchallenge.application.ports.out.customer.ExistsCustomerByEmailOutputPort;
+import com.postech.entregavel1techchallenge.application.ports.out.customer.SaveCustomerOutPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

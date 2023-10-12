@@ -4,9 +4,9 @@ import com.postech.entregavel1techchallenge.adapters.in.controller.mapper.Custom
 import com.postech.entregavel1techchallenge.adapters.in.controller.request.CustomerRequest;
 import com.postech.entregavel1techchallenge.adapters.in.controller.response.CustomerResponse;
 import com.postech.entregavel1techchallenge.application.core.domain.Customer;
-import com.postech.entregavel1techchallenge.application.ports.in.CreateCustomerInputPort;
-import com.postech.entregavel1techchallenge.application.ports.in.FindCustomerByDocumentInputPort;
-import com.postech.entregavel1techchallenge.application.ports.in.FindCustomerByIdInputPort;
+import com.postech.entregavel1techchallenge.application.ports.in.customer.CreateCustomerInputPort;
+import com.postech.entregavel1techchallenge.application.ports.in.customer.FindCustomerByDocumentInputPort;
+import com.postech.entregavel1techchallenge.application.ports.in.customer.FindCustomerByIdInputPort;
 import com.postech.entregavel1techchallenge.util.TestDataCreatorUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
