@@ -6,6 +6,7 @@ import com.postech.entregavel1techchallenge.application.core.domain.product.Prod
 import com.postech.entregavel1techchallenge.application.ports.out.product.GetProductsByCategoryOutputPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -18,6 +19,7 @@ public class GetProductsByCategoryAdapter implements GetProductsByCategoryOutput
     private final ProductEntityMapper entityMapper;
 
     @Override
+    @Transactional(readOnly = true)
     public List<Product> get(String category) {
         return productRepository.findByCategory(category).stream()
                 .map(entityMapper::toProduct)

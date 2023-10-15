@@ -1,5 +1,6 @@
 package com.postech.entregavel1techchallenge.adapters.out.repository.entity;
 
+import com.postech.entregavel1techchallenge.adapters.out.repository.entity.ref.BaseAuditEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
@@ -14,7 +15,7 @@ import java.math.BigDecimal;
 @ToString
 @Table(name = "tb_product")
 @Entity(name = "Product")
-public class ProductEntity {
+public class ProductEntity extends BaseAuditEntity {
 
     @Id
     @GenericGenerator(name = "uuid2", strategy = "uuid2")

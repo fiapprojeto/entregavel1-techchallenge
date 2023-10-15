@@ -1,4 +1,4 @@
-package com.postech.entregavel1techchallenge.application.core.domain;
+package com.postech.entregavel1techchallenge.application.core.domain.customer;
 
 import lombok.Builder;
 import lombok.Data;

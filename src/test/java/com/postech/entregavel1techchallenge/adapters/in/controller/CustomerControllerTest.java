@@ -4,7 +4,7 @@ import com.postech.entregavel1techchallenge.adapters.in.controller.customer.Cust
 import com.postech.entregavel1techchallenge.adapters.in.controller.customer.mapper.CustomerRequestResponseMapper;
 import com.postech.entregavel1techchallenge.adapters.in.controller.customer.request.CustomerRequest;
 import com.postech.entregavel1techchallenge.adapters.in.controller.customer.response.CustomerResponse;
-import com.postech.entregavel1techchallenge.application.core.domain.Customer;
+import com.postech.entregavel1techchallenge.application.core.domain.customer.Customer;
 import com.postech.entregavel1techchallenge.application.ports.in.customer.CreateCustomerInputPort;
 import com.postech.entregavel1techchallenge.application.ports.in.customer.FindCustomerByDocumentInputPort;
 import com.postech.entregavel1techchallenge.application.ports.in.customer.FindCustomerByIdInputPort;

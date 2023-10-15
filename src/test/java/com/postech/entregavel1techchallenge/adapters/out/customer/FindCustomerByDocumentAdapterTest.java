@@ -3,7 +3,7 @@ package com.postech.entregavel1techchallenge.adapters.out.customer;
 import com.postech.entregavel1techchallenge.adapters.out.repository.CustomerRepository;
 import com.postech.entregavel1techchallenge.adapters.out.repository.entity.CustomerEntity;
 import com.postech.entregavel1techchallenge.adapters.out.repository.mapper.CustomerEntityMapper;
-import com.postech.entregavel1techchallenge.application.core.domain.Customer;
+import com.postech.entregavel1techchallenge.application.core.domain.customer.Customer;
 import com.postech.entregavel1techchallenge.util.TestDataCreatorUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

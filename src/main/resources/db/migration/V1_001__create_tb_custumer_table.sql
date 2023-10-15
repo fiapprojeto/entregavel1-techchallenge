@@ -4,6 +4,8 @@ CREATE TABLE IF NOT EXISTS tb_customer
     name               VARCHAR(100)  NOT NULL,
     email              VARCHAR(100)  NOT NULL,
     document           VARCHAR(13)   NOT NULL,
+    create_date        TIMESTAMP     NOT NULL,
+    last_modified_date TIMESTAMP     NOT NULL,
 
     CONSTRAINT tb_customer_pk primary key (id)
 );

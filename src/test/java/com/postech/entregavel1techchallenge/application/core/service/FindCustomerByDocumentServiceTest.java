@@ -1,6 +1,6 @@
 package com.postech.entregavel1techchallenge.application.core.service;
 
-import com.postech.entregavel1techchallenge.application.core.domain.Customer;
+import com.postech.entregavel1techchallenge.application.core.domain.customer.Customer;
 import com.postech.entregavel1techchallenge.application.core.exceptions.customer.CustomerNotFoundException;
 import com.postech.entregavel1techchallenge.application.core.service.customer.FindCustomerByDocumentService;
 import com.postech.entregavel1techchallenge.application.ports.out.customer.GetCustomerByDocumentOutputPort;

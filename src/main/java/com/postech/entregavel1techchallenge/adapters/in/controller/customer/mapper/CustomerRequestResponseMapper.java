@@ -2,7 +2,7 @@ package com.postech.entregavel1techchallenge.adapters.in.controller.customer.map
 
 import com.postech.entregavel1techchallenge.adapters.in.controller.customer.request.CustomerRequest;
 import com.postech.entregavel1techchallenge.adapters.in.controller.customer.response.CustomerResponse;
-import com.postech.entregavel1techchallenge.application.core.domain.Customer;
+import com.postech.entregavel1techchallenge.application.core.domain.customer.Customer;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

@@ -6,6 +6,7 @@ import com.postech.entregavel1techchallenge.application.core.domain.product.Prod
 import com.postech.entregavel1techchallenge.application.ports.out.product.GetProductByIdOutputPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -17,6 +18,7 @@ public class FindProductByIdAdapter implements GetProductByIdOutputPort {
 
     private final ProductEntityMapper entityMapper;
     @Override
+    @Transactional(readOnly = true)
     public Optional<Product> get(String id) {
         return productRepository.findById(id)
                 .map(entityMapper::toProduct);

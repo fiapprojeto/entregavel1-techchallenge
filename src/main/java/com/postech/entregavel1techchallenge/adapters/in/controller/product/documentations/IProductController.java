@@ -1,6 +1,5 @@
 package com.postech.entregavel1techchallenge.adapters.in.controller.product.documentations;
 
-import com.postech.entregavel1techchallenge.adapters.in.controller.customer.response.CustomerResponse;
 import com.postech.entregavel1techchallenge.adapters.in.controller.product.request.ProductRequest;
 import com.postech.entregavel1techchallenge.adapters.in.controller.product.response.ProductResponse;
 import com.postech.entregavel1techchallenge.application.core.exceptions.ExceptionDetails;
