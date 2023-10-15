@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -23,6 +24,10 @@ public class Order {
     private List<OrderItem> items;
 
     private BigDecimal total;
+
+    private LocalDateTime createDate;
+
+    private LocalDateTime lastModifiedDate;
 
     public void setDefaults() {
         this.status = OrderStatusEnum.CREATED;

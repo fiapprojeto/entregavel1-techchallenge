@@ -6,6 +6,7 @@ import com.postech.entregavel1techchallenge.adapters.out.repository.entity.Produ
 import com.postech.entregavel1techchallenge.application.core.domain.order.Order;
 import com.postech.entregavel1techchallenge.application.core.domain.order.OrderItem;
 import com.postech.entregavel1techchallenge.application.core.domain.product.Product;
+import org.mapstruct.InheritConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
@@ -14,6 +15,8 @@ import java.util.List;
 
 @Mapper(componentModel = "spring", uses = ProductEntityMapper.class)
 public interface OrderEntityMapper {
+
+    @InheritConfiguration
     @Mapping(source = "items", target = "items", qualifiedByName = "mapItems")
     OrderEntity toOrderEntity(Order order);
 
