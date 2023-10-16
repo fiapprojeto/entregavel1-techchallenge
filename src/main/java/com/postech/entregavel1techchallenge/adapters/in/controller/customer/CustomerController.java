@@ -1,12 +1,13 @@
 package com.postech.entregavel1techchallenge.adapters.in.controller.customer;
 
 import com.postech.entregavel1techchallenge.adapters.in.controller.customer.documentations.ICustomerController;
-import com.postech.entregavel1techchallenge.adapters.in.controller.customer.mapper.CustomerRequestResponseMapper;
 import com.postech.entregavel1techchallenge.adapters.in.controller.customer.request.CustomerRequest;
 import com.postech.entregavel1techchallenge.adapters.in.controller.customer.response.CustomerResponse;
+import com.postech.entregavel1techchallenge.application.core.domain.customer.Customer;
 import com.postech.entregavel1techchallenge.application.ports.in.customer.CreateCustomerInputPort;
 import com.postech.entregavel1techchallenge.application.ports.in.customer.FindCustomerByDocumentInputPort;
 import com.postech.entregavel1techchallenge.application.ports.in.customer.FindCustomerByIdInputPort;
+import com.postech.entregavel1techchallenge.config.mapper.ModelMapperCustom;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,15 +27,15 @@ public class CustomerController implements ICustomerController {
 
     private final FindCustomerByIdInputPort findCustomerByIdInputPort;
 
-    private final CustomerRequestResponseMapper mapper;
+    private final ModelMapperCustom mapper;
 
     @PostMapping
     public ResponseEntity<CustomerResponse> create(@RequestBody @Valid CustomerRequest request,
                                                    UriComponentsBuilder uriBuilder) {
         log.info("Cadastro de novo cliente recebido. [request: {}]", request);
 
-        var customer = createCustomerInputPort.save(mapper.toCustomer(request));
-        var response = mapper.toCustomerResponse(customer);
+        var customer = createCustomerInputPort.save(mapper.map(request, Customer.class));
+        var response = mapper.map(customer, CustomerResponse.class);
         var uri = uriBuilder.path("/customers/{id}").buildAndExpand(response.getId()).toUri();
 
         log.info("Cliente cadastrado com sucesso. [response: {}]", response);
@@ -45,7 +46,7 @@ public class CustomerController implements ICustomerController {
     public ResponseEntity<CustomerResponse> findById(@PathVariable String customerId) {
         log.info("Buscando cliente por id: {}", customerId);
         var customer = findCustomerByIdInputPort.find(customerId);
-        var response = mapper.toCustomerResponse(customer);
+        var response = mapper.map(customer, CustomerResponse.class);
         log.info("Cliente encontrado. [id: {} e response: {}", customerId, response);
         return ResponseEntity.ok(response);
     }
@@ -54,7 +55,7 @@ public class CustomerController implements ICustomerController {
     public ResponseEntity<CustomerResponse> findByDocument(@PathVariable String document) {
         log.info("Buscando cliente por documento: {}", document);
         var customer = findCustomerByDocumentInputPort.find(document);
-        var response = mapper.toCustomerResponse(customer);
+        var response = mapper.map(customer, CustomerResponse.class);
         log.info("Cliente encontrado. [document: {} e response: {}", document, response);
         return ResponseEntity.ok(response);
     }

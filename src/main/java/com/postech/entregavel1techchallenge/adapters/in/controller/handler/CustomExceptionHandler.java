@@ -5,8 +5,8 @@ import com.postech.entregavel1techchallenge.application.core.exceptions.Exceptio
 import com.postech.entregavel1techchallenge.application.core.exceptions.customer.AlreadyExistsCustomerException;
 import com.postech.entregavel1techchallenge.application.core.exceptions.customer.CustomerNotFoundException;
 import com.postech.entregavel1techchallenge.application.core.exceptions.order.InvalidOrderStatusException;
-import com.postech.entregavel1techchallenge.application.core.exceptions.order.OrderNotFoundException;
 import com.postech.entregavel1techchallenge.application.core.exceptions.order.OrderCustomerNotFoundException;
+import com.postech.entregavel1techchallenge.application.core.exceptions.order.OrderNotFoundException;
 import com.postech.entregavel1techchallenge.application.core.exceptions.product.ProductNotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

@@ -1,12 +1,13 @@
 package com.postech.entregavel1techchallenge.adapters.in.controller.order;
 
-import com.postech.entregavel1techchallenge.adapters.in.controller.order.mapper.OrderRequestResponseMapper;
 import com.postech.entregavel1techchallenge.adapters.in.controller.order.request.OrderRequest;
 import com.postech.entregavel1techchallenge.adapters.in.controller.order.request.PayOrderRequest;
 import com.postech.entregavel1techchallenge.adapters.in.controller.order.response.OrderResponse;
+import com.postech.entregavel1techchallenge.application.core.domain.order.Order;
 import com.postech.entregavel1techchallenge.application.ports.in.order.CancelOrderInputPort;
 import com.postech.entregavel1techchallenge.application.ports.in.order.CreateOrderInputPort;
 import com.postech.entregavel1techchallenge.application.ports.in.order.PayOrderInputPort;
+import com.postech.entregavel1techchallenge.config.mapper.ModelMapperCustom;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,14 +26,14 @@ public class OrderController {
 
     private final PayOrderInputPort payOrderInputPort;
 
-    private final OrderRequestResponseMapper mapper;
+    private final ModelMapperCustom mapper;
 
     @PostMapping
     public ResponseEntity<OrderResponse> create(@RequestBody @Valid OrderRequest request) {
         log.info("Criacao de pedido recebido. [request: {}]", request);
 
-        var order = createOrderInputPort.create(mapper.toOrder(request));
-        var response = mapper.toOrderResponse(order);
+        var order = createOrderInputPort.create(mapper.map(request, Order.class));
+        var response = mapper.map(order, OrderResponse.class);
 
         log.info("Pedido criado com sucesso. [response: {}]", response);
 

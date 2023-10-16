@@ -2,7 +2,6 @@ package com.postech.entregavel1techchallenge.adapters.out.order;
 
 import com.postech.entregavel1techchallenge.adapters.out.repository.OrderRepository;
 import com.postech.entregavel1techchallenge.adapters.out.repository.entity.OrderEntity;
-import com.postech.entregavel1techchallenge.adapters.out.repository.mapper.OrderEntityMapper;
 import com.postech.entregavel1techchallenge.application.core.domain.order.Order;
 import com.postech.entregavel1techchallenge.application.ports.out.order.UpdateOrderOutputPort;
 import com.postech.entregavel1techchallenge.config.mapper.ModelMapperCustom;
