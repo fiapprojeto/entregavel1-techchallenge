@@ -2,9 +2,9 @@ services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile
+#      dockerfile: Dockerfile
     hostname: app
-#    image: robsonbnh/tech-challenge:latest
+    image: robsonbnh/tech-challenge:latest
     environment:
       - SERVER_PORT=8080
       - DATABASE_URL=jdbc:postgresql://db-postgresql:5432/pos_tech_db
