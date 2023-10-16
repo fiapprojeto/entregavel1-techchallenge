@@ -2,7 +2,7 @@ package com.postech.entregavel1techchallenge.application.core.service.order;
 
 import com.postech.entregavel1techchallenge.application.core.domain.order.enums.OrderStatusEnum;
 import com.postech.entregavel1techchallenge.application.core.exceptions.order.InvalidOrderStatusException;
-import com.postech.entregavel1techchallenge.application.core.exceptions.order.NotFoundOrderException;
+import com.postech.entregavel1techchallenge.application.core.exceptions.order.OrderNotFoundException;
 import com.postech.entregavel1techchallenge.application.ports.in.order.CancelOrderInputPort;
 import com.postech.entregavel1techchallenge.application.ports.out.order.GetOrderByIdOutputPort;
 import com.postech.entregavel1techchallenge.application.ports.out.order.UpdateOrderOutputPort;
@@ -20,7 +20,7 @@ public class CancelOrderService implements CancelOrderInputPort {
     @Override
     public void cancel(String orderId) {
         var order = getOrderByIdOutputPort.get(orderId)
-                .orElseThrow(() -> new NotFoundOrderException("Pedido não encontrado para seguir com cancelamento."));
+                .orElseThrow(() -> new OrderNotFoundException("Pedido não encontrado para seguir com cancelamento."));
 
         if(!OrderStatusEnum.CREATED.equals(order.getStatus()))
             throw new InvalidOrderStatusException("Status inválido para cancelar pedido.");

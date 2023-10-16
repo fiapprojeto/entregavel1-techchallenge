@@ -4,6 +4,8 @@ import com.postech.entregavel1techchallenge.application.core.exceptions.BaseExce
 import com.postech.entregavel1techchallenge.application.core.exceptions.ExceptionDetails;
 import com.postech.entregavel1techchallenge.application.core.exceptions.customer.AlreadyExistsCustomerException;
 import com.postech.entregavel1techchallenge.application.core.exceptions.customer.CustomerNotFoundException;
+import com.postech.entregavel1techchallenge.application.core.exceptions.order.InvalidOrderStatusException;
+import com.postech.entregavel1techchallenge.application.core.exceptions.order.OrderNotFoundException;
 import com.postech.entregavel1techchallenge.application.core.exceptions.order.OrderCustomerNotFoundException;
 import com.postech.entregavel1techchallenge.application.core.exceptions.product.ProductNotFoundException;
 import org.springframework.http.HttpHeaders;
@@ -23,18 +25,20 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         return buildException(ex, HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
-    @ExceptionHandler(CustomerNotFoundException.class)
-    public ResponseEntity<ExceptionDetails> handlerCustomerNotFoundException(CustomerNotFoundException ex) {
+    @ExceptionHandler({
+            CustomerNotFoundException.class,
+            ProductNotFoundException.class,
+            OrderNotFoundException.class
+    })
+    public ResponseEntity<ExceptionDetails> handlerCustomerNotFoundException(BaseException ex) {
         return buildException(ex, HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(ProductNotFoundException.class)
-    public ResponseEntity<ExceptionDetails> handlerProductNotFoundException(ProductNotFoundException ex) {
-        return buildException(ex, HttpStatus.NOT_FOUND);
-    }
-
-    @ExceptionHandler(OrderCustomerNotFoundException.class)
-    public ResponseEntity<ExceptionDetails> handlerOrderCustomerNotFoundException(OrderCustomerNotFoundException ex) {
+    @ExceptionHandler({
+            OrderCustomerNotFoundException.class,
+            InvalidOrderStatusException.class
+    })
+    public ResponseEntity<ExceptionDetails> handlerOrderCustomerNotFoundException(BaseException ex) {
         return buildException(ex, HttpStatus.BAD_REQUEST);
     }
 

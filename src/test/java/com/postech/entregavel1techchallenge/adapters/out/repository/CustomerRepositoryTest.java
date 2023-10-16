@@ -1,6 +1,8 @@
 package com.postech.entregavel1techchallenge.adapters.out.repository;
 
 import com.postech.entregavel1techchallenge.adapters.out.repository.entity.CustomerEntity;
+import com.postech.entregavel1techchallenge.config.audit.AuditorAwareImpl;
+import com.postech.entregavel1techchallenge.config.persistence.PersistenceConfig;
 import com.postech.entregavel1techchallenge.util.TestDataCreatorUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -8,11 +10,16 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.TestPropertySource;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.context.annotation.FilterType.ASSIGNABLE_TYPE;
 
-@DataJpaTest
+@DataJpaTest(includeFilters = @ComponentScan.Filter(
+        type = ASSIGNABLE_TYPE,
+        classes = {AuditorAwareImpl.class, PersistenceConfig.class}
+))
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @TestPropertySource(locations = "classpath:application-test.yml")
 @DisplayName("Repository - CustomerRepository")

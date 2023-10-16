@@ -50,7 +50,7 @@ public class OrderController {
     @PatchMapping("{orderId}/pay")
     public ResponseEntity<Void> pay(@PathVariable String orderId, @RequestBody PayOrderRequest orderRequest) {
         log.info("Inicio do pagament. [orderId: {}, request: {}]", orderId, orderRequest);
-        cancelOrderInputPort.cancel(orderId);
+        payOrderInputPort.pay(orderId, orderRequest.total());
         log.info("Pagamento efetuado com sucesso. [orderId: {}]", orderId);
         return ResponseEntity.noContent().build();
     }
