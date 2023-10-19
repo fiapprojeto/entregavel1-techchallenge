@@ -1,5 +1,6 @@
 package com.postech.entregavel1techchallenge.adapters.in.controller.order;
 
+import com.postech.entregavel1techchallenge.adapters.in.controller.order.mapper.OrderRequestResponseMapper;
 import com.postech.entregavel1techchallenge.adapters.in.controller.order.request.OrderRequest;
 import com.postech.entregavel1techchallenge.adapters.in.controller.order.request.PayOrderRequest;
 import com.postech.entregavel1techchallenge.adapters.in.controller.order.response.OrderResponse;
@@ -26,14 +27,14 @@ public class OrderController {
 
     private final PayOrderInputPort payOrderInputPort;
 
-    private final ModelMapperCustom mapper;
+    private final OrderRequestResponseMapper mapper;
 
     @PostMapping
     public ResponseEntity<OrderResponse> create(@RequestBody @Valid OrderRequest request) {
         log.info("Criacao de pedido recebido. [request: {}]", request);
 
-        var order = createOrderInputPort.create(mapper.map(request, Order.class));
-        var response = mapper.map(order, OrderResponse.class);
+        var order = createOrderInputPort.create(mapper.toOrder(request));
+        var response = mapper.toOrderResponse(order);
 
         log.info("Pedido criado com sucesso. [response: {}]", response);
 
