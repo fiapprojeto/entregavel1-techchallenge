@@ -8,6 +8,7 @@ import com.postech.entregavel1techchallenge.application.core.exceptions.order.In
 import com.postech.entregavel1techchallenge.application.core.exceptions.order.OrderCustomerNotFoundException;
 import com.postech.entregavel1techchallenge.application.core.exceptions.order.OrderNotFoundException;
 import com.postech.entregavel1techchallenge.application.core.exceptions.order.OrderProductNotFoundException;
+import com.postech.entregavel1techchallenge.application.core.exceptions.product.ProductInUseException;
 import com.postech.entregavel1techchallenge.application.core.exceptions.product.ProductNotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -38,7 +39,8 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler({
             OrderCustomerNotFoundException.class,
             OrderProductNotFoundException.class,
-            InvalidOrderStatusException.class
+            InvalidOrderStatusException.class,
+            ProductInUseException.class
     })
     public ResponseEntity<ExceptionDetails> handlerOrderCustomerNotFoundException(BaseException ex) {
         return buildException(ex, HttpStatus.BAD_REQUEST);

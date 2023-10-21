@@ -4,9 +4,7 @@ import com.postech.entregavel1techchallenge.adapters.in.controller.product.docum
 import com.postech.entregavel1techchallenge.adapters.in.controller.product.mapper.ProductRequestResponseMapper;
 import com.postech.entregavel1techchallenge.adapters.in.controller.product.request.ProductRequest;
 import com.postech.entregavel1techchallenge.adapters.in.controller.product.response.ProductResponse;
-import com.postech.entregavel1techchallenge.application.ports.in.product.CreateProductInputPort;
-import com.postech.entregavel1techchallenge.application.ports.in.product.FindProductByIdInputPort;
-import com.postech.entregavel1techchallenge.application.ports.in.product.GetProductsByCategoryInputPort;
+import com.postech.entregavel1techchallenge.application.ports.in.product.*;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +26,10 @@ public class ProductController implements IProductController {
 
     private final FindProductByIdInputPort findProductByIdInputPort;
 
+    private final UpdateProductInputPort updateProductInputPort;
+
+    private final DeleteProductInputPort deleteProductInputPort;
+
     private final ProductRequestResponseMapper mapper;
 
     @PostMapping
@@ -35,8 +37,8 @@ public class ProductController implements IProductController {
                                                   UriComponentsBuilder uriBuilder) {
         log.info("Cadastro de novo produto recebido. [request: {}]", request);
 
-        var customer = createProductInputPort.save(mapper.toProduct(request));
-        var response = mapper.toProductResponse(customer);
+        var product = createProductInputPort.save(mapper.toProduct(request));
+        var response = mapper.toProductResponse(product);
         var uri = uriBuilder.path("/products/{id}").buildAndExpand(response.getId()).toUri();
 
         log.info("Produto cadastrado com sucesso. [response: {}]", response);
@@ -50,6 +52,28 @@ public class ProductController implements IProductController {
         var response = mapper.toProductResponse(product);
         log.info("Produto encontrado. [id: {} response: {}]", productId, response);
         return ResponseEntity.ok(response);
+    }
+
+    @PutMapping("{productId}")
+    public ResponseEntity<ProductResponse> update(@RequestBody @Valid ProductRequest productRequest,
+                                                  @PathVariable String productId) {
+        log.info("Atualizacao de produto recebida. [id: {} e request: {}]", productId, productRequest);
+        var product = updateProductInputPort.update(productId, mapper.toProduct(productRequest));
+        var response = mapper.toProductResponse(product);
+
+        log.info("Produto atualizado com sucesso. [response: {}]", response);
+        return ResponseEntity.ok(response);
+    }
+
+    @DeleteMapping("{productId}")
+    public ResponseEntity<Void> delete(@PathVariable String productId) {
+        log.info("Requisicao para apagar produdo. [productId: {}]", productId);
+
+        deleteProductInputPort.delete(productId);
+
+        log.info("Produto apagado com sucesso. [productId: {}]", productId);
+
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("{category}/category")
