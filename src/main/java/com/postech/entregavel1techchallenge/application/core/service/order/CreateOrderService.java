@@ -3,6 +3,7 @@ package com.postech.entregavel1techchallenge.application.core.service.order;
 
 import com.postech.entregavel1techchallenge.application.core.domain.order.Order;
 import com.postech.entregavel1techchallenge.application.core.exceptions.order.OrderCustomerNotFoundException;
+import com.postech.entregavel1techchallenge.application.core.exceptions.order.OrderProductNotFoundException;
 import com.postech.entregavel1techchallenge.application.ports.in.order.CreateOrderInputPort;
 import com.postech.entregavel1techchallenge.application.ports.out.customer.GetCustomerByIdOutputPort;
 import com.postech.entregavel1techchallenge.application.ports.out.order.CreateOrderOutputPort;
@@ -40,8 +41,10 @@ public class CreateOrderService implements CreateOrderInputPort {
 
     private void populateItems(Order order) {
         order.getItems().forEach(item -> {
-            var productOptional = getProductByIdOutputPort.get(item.getProduct().getId());
-            productOptional.ifPresent(item::setProduct);
+            var product = getProductByIdOutputPort.get(item.getProduct().getId())
+                    .orElseThrow(() -> new OrderProductNotFoundException(
+                            "Um ou mais produto informado não encontrado para seguir com pedido!"));
+            item.setProduct(product);
         });
     }
 }
