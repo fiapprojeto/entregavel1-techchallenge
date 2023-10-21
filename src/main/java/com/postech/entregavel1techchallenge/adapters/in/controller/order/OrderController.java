@@ -4,15 +4,16 @@ import com.postech.entregavel1techchallenge.adapters.in.controller.order.mapper.
 import com.postech.entregavel1techchallenge.adapters.in.controller.order.request.OrderRequest;
 import com.postech.entregavel1techchallenge.adapters.in.controller.order.request.PayOrderRequest;
 import com.postech.entregavel1techchallenge.adapters.in.controller.order.response.OrderResponse;
-import com.postech.entregavel1techchallenge.application.ports.in.order.CancelOrderInputPort;
-import com.postech.entregavel1techchallenge.application.ports.in.order.ChangeProgressOrderInputPort;
-import com.postech.entregavel1techchallenge.application.ports.in.order.CreateOrderInputPort;
-import com.postech.entregavel1techchallenge.application.ports.in.order.PayOrderInputPort;
+import com.postech.entregavel1techchallenge.application.core.domain.order.Order;
+import com.postech.entregavel1techchallenge.application.core.domain.order.enums.OrderProgressEnum;
+import com.postech.entregavel1techchallenge.application.ports.in.order.*;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -27,6 +28,8 @@ public class OrderController {
     private final PayOrderInputPort payOrderInputPort;
 
     private final ChangeProgressOrderInputPort changeProgressOrderInputPort;
+
+    private final FindOrdersByProgressInputPort findOrdersByProgressInputPort;
 
     private final OrderRequestResponseMapper mapper;
 
@@ -64,6 +67,15 @@ public class OrderController {
         changeProgressOrderInputPort.change(orderId);
         log.info("Andamento do pedido alterado com sucesso. [orderId: {}]", orderId);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping
+    public ResponseEntity<List<OrderResponse>> get(@RequestParam OrderProgressEnum progress) {
+        log.info("Buscando pedidos com o andamento: {}", progress);
+        var orders = findOrdersByProgressInputPort.get(progress).stream()
+                .map(mapper::toOrderResponse)
+                .toList();
+        return ResponseEntity.ok(orders);
     }
 
 }
