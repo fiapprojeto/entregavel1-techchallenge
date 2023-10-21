@@ -4,11 +4,10 @@ import com.postech.entregavel1techchallenge.adapters.in.controller.order.mapper.
 import com.postech.entregavel1techchallenge.adapters.in.controller.order.request.OrderRequest;
 import com.postech.entregavel1techchallenge.adapters.in.controller.order.request.PayOrderRequest;
 import com.postech.entregavel1techchallenge.adapters.in.controller.order.response.OrderResponse;
-import com.postech.entregavel1techchallenge.application.core.domain.order.Order;
 import com.postech.entregavel1techchallenge.application.ports.in.order.CancelOrderInputPort;
+import com.postech.entregavel1techchallenge.application.ports.in.order.ChangeProgressOrderInputPort;
 import com.postech.entregavel1techchallenge.application.ports.in.order.CreateOrderInputPort;
 import com.postech.entregavel1techchallenge.application.ports.in.order.PayOrderInputPort;
-import com.postech.entregavel1techchallenge.config.mapper.ModelMapperCustom;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +25,8 @@ public class OrderController {
     private final CancelOrderInputPort cancelOrderInputPort;
 
     private final PayOrderInputPort payOrderInputPort;
+
+    private final ChangeProgressOrderInputPort changeProgressOrderInputPort;
 
     private final OrderRequestResponseMapper mapper;
 
@@ -54,6 +55,14 @@ public class OrderController {
         log.info("Inicio do pagament. [orderId: {}, request: {}]", orderId, orderRequest);
         payOrderInputPort.pay(orderId, orderRequest.total());
         log.info("Pagamento efetuado com sucesso. [orderId: {}]", orderId);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PatchMapping("{orderId}/change-progress")
+    public ResponseEntity<Void> changeProgress(@PathVariable String orderId) {
+        log.info("Alterando o andamento do pedido. [orderId: {}]", orderId);
+        changeProgressOrderInputPort.change(orderId);
+        log.info("Andamento do pedido alterado com sucesso. [orderId: {}]", orderId);
         return ResponseEntity.noContent().build();
     }
 
