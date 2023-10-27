@@ -3,7 +3,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: /bin/sh -c "./gradlew clean build && java -jar build/libs/*.jar"
     hostname: app
 #    image: robsonbnh/tech-challenge:latest
     environment:
@@ -18,6 +17,8 @@ services:
       - "8080:8080"
     networks:
       - pos-tech
+    command: /bin/sh -c "./gradlew clean build && java -jar build/libs/your-app.jar"
+
 
   db-postgresql:
     image: postgres:latest
