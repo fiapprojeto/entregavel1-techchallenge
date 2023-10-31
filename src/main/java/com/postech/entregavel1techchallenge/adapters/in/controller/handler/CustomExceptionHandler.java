@@ -14,10 +14,17 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @ControllerAdvice
 public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
@@ -55,13 +62,28 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(exceptionDetails, httpStatus);
     }
 
-
     @Override
     protected ResponseEntity<Object> handleExceptionInternal(Exception ex,
                                                              Object body,
                                                              HttpHeaders headers,
                                                              HttpStatusCode statusCode,
                                                              WebRequest request) {
+
+        if(ex instanceof MethodArgumentNotValidException exception) {
+            List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
+
+            String fields = fieldErrors.stream().map(FieldError::getField).collect(Collectors.joining(", "));
+            String fieldsMessage = fieldErrors.stream().map(FieldError::getDefaultMessage).collect(Collectors.joining(", "));
+
+            return new ResponseEntity<>(
+                    ExceptionDetails.builder()
+                            .status(HttpStatus.BAD_REQUEST.value())
+                            .title("Bad Request Exception, Invalid Fields")
+                            .message("Check the field(s) error")
+                            .fields(fields)
+                            .fieldsMessage(fieldsMessage)
+                            .build(), HttpStatus.BAD_REQUEST);
+        }
 
         var exceptionDetails = ExceptionDetails.builder()
                 .status(statusCode.value())

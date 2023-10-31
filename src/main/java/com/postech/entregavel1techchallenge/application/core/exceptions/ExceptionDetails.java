@@ -11,4 +11,6 @@ public class ExceptionDetails {
     private String title;
     private int status;
     private String message;
+    private String fields;
+    private String fieldsMessage;
 }

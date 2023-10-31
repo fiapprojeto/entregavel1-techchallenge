@@ -19,6 +19,6 @@ public class CustomerRequest {
     @Email
     private String email;
     @NotNull
-    @CPF
+    @CPF(message = "Informe um CPF válido")
     private String document;
 }
