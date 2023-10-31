@@ -34,3 +34,12 @@ Execute o comando abaixo para executar os test da aplicação
 ```
 docker compose up
 ```
+
+
+### Documentation
+
+Acesse o documentação do swagger do endereço abaixo:
+
+```
+http://localhost:8080/api-docs.html
+```

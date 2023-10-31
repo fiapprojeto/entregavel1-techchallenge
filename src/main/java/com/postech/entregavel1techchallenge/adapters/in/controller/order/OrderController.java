@@ -1,5 +1,6 @@
 package com.postech.entregavel1techchallenge.adapters.in.controller.order;
 
+import com.postech.entregavel1techchallenge.adapters.in.controller.order.documentations.IOrderController;
 import com.postech.entregavel1techchallenge.adapters.in.controller.order.mapper.OrderRequestResponseMapper;
 import com.postech.entregavel1techchallenge.adapters.in.controller.order.request.OrderRequest;
 import com.postech.entregavel1techchallenge.adapters.in.controller.order.request.PayOrderRequest;
@@ -19,7 +20,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/orders")
 @RequiredArgsConstructor
-public class OrderController {
+public class OrderController implements IOrderController {
 
     private final CreateOrderInputPort createOrderInputPort;
 
